@@ -1,0 +1,27 @@
+name: flutter_app_icons
+description: Dynamic App Icon, for a beginning this will only be for web favicon, because there is no way to change that with flutter, for later it is intended that we support app icons on Android and iOS.
+version: 0.0.1
+homepage: https://github.com/codebird/flutter_app_icons
+
+environment:
+  sdk: '>=2.18.0-120.0.dev <3.0.0'
+  flutter: ">=2.5.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  plugin:
+    platforms:
+      web:
+        pluginClass: FlutterAppIconsWeb
+        fileName: flutter_app_icons_web.dart
