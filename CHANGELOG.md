@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Updated example
+
 ## 0.0.3
 
 * Returning empty string in method channel, until they're implemented.

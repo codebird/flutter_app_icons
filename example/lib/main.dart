@@ -29,7 +29,39 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Check favicon\n'),
+          child: SizedBox(
+            width: 140,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
+              child: Column(
+                children: [
+                  Text('Change favicon here:'),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          _flutterAppIconsPlugin.setIcon(
+                              icon: 'favicon-failure.png');
+                        },
+                        child: const Text(
+                          'Red',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          _flutterAppIconsPlugin.setIcon(icon: 'favicon.png');
+                        },
+                        child: const Text(
+                          'Blue',
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
