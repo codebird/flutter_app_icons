@@ -25,3 +25,6 @@ flutter:
       web:
         pluginClass: FlutterAppIconsWeb
         fileName: flutter_app_icons_web.dart
+      android:
+        package: com.hmallah.flutter_app_icons
+        pluginClass: FlutterAppIconsPlugin
