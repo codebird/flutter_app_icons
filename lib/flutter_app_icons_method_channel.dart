@@ -11,7 +11,7 @@ class MethodChannelFlutterAppIcons extends FlutterAppIconsPlatform {
 
   @override
   Future<String?> setIcon({required String icon}) async {
-    final version = await methodChannel.invokeMethod<String>('setIcon');
-    return version;
+    // await methodChannel.invokeMethod<String>('setIcon');
+    return '';
   }
 }

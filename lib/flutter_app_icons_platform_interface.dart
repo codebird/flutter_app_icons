@@ -24,6 +24,6 @@ abstract class FlutterAppIconsPlatform extends PlatformInterface {
   }
 
   Future<String?> setIcon({required String icon}) {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+    throw UnimplementedError('setIcon() has not been implemented.');
   }
 }
