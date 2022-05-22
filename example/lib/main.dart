@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _flutterAppIconsPlugin.setIcon(icon: 'favicon-failure.png');
+    //_flutterAppIconsPlugin.setIcon(icon: 'favicon-failure.png');
   }
 
   @override

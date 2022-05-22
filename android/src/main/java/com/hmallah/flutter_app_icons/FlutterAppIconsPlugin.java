@@ -33,13 +33,23 @@ public class FlutterAppIconsPlugin implements FlutterPlugin, MethodCallHandler {
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         if (call.method.equals("setIcon")) {
-            Log.d("Debugging", "We got here.");
-
             PackageManager pm = context.getPackageManager();
-            pm.setComponentEnabledSetting(
-                    new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivityRed"),
-                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-            Log.d("Debugging", "We got here 2.");
+            final String icon = call.argument("icon");
+            if(icon.equals("favicon-failure.png")){
+                pm.setComponentEnabledSetting(
+                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                pm.setComponentEnabledSetting(
+                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivityRed"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            } else {
+                pm.setComponentEnabledSetting(
+                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                pm.setComponentEnabledSetting(
+                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivityRed"),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            }
         } else {
             result.notImplemented();
         }
