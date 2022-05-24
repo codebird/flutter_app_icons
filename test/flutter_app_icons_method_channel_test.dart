@@ -19,6 +19,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await platform.setIcon(icon: 'test'), 'test');
+    expect(await platform.setIcon(icon: 'test', oldIcon: 'test'), 'test');
   });
 }

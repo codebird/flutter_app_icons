@@ -19,7 +19,7 @@ class FlutterAppIconsWeb extends FlutterAppIconsPlatform {
 
   /// sets favicon of webpage
   @override
-  Future<String> setIcon({required String icon}) {
+  Future<String> setIcon({required String icon, String oldIcon = ''}) {
     LinkElement? link = querySelector("link[rel~='icon']") as LinkElement?;
     LinkElement? link2 =
         querySelector("link[rel~='apple-touch-icon']") as LinkElement?;

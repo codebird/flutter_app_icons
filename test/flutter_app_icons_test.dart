@@ -8,7 +8,8 @@ class MockFlutterAppIconsPlatform
     with MockPlatformInterfaceMixin
     implements FlutterAppIconsPlatform {
   @override
-  Future<String?> setIcon({required String icon}) => Future.value(icon);
+  Future<String?> setIcon({required String icon, String oldIcon = ''}) =>
+      Future.value(icon);
 }
 
 void main() {

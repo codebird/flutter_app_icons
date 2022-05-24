@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hmallah.flutter_app_icons_example">
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true" />
+
    <application
         android:label="flutter_app_icons_example"
         android:name="${applicationName}"
@@ -22,14 +26,25 @@
               />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
             </intent-filter>
         </activity>
        <activity-alias android:label="flutter_app_icons_example"
            android:icon="@mipmap/ic_launcher_f_round"
-           android:name=".MainActivityRed"
+           android:name=".favicon.png"
            android:exported="true"
            android:enabled="false"
+           android:targetActivity=".MainActivity">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity-alias>
+       <activity-alias android:label="flutter_app_icons_example"
+           android:icon="@mipmap/ic_launcher"
+           android:name=".favicon.failure.png"
+           android:exported="true"
+           android:enabled="true"
            android:targetActivity=".MainActivity">
            <intent-filter>
                <action android:name="android.intent.action.MAIN" />

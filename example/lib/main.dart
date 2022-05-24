@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app_icons/flutter_app_icons.dart';
 
@@ -14,7 +16,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _flutterAppIconsPlugin = FlutterAppIcons();
-
+  String icon = 'favicon.png';
   @override
   void initState() {
     super.initState();
@@ -23,6 +25,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+      String oldIcon = icon;
+      if (icon == 'favicon.png') {
+        icon = 'favicon-failure.png';
+      } else {
+        icon = 'favicon.png';
+      }
+      _flutterAppIconsPlugin.setIcon(icon: icon, oldIcon: oldIcon);
+    });
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -41,7 +52,9 @@ class _MyAppState extends State<MyApp> {
                       TextButton(
                         onPressed: () {
                           _flutterAppIconsPlugin.setIcon(
-                              icon: 'favicon-failure.png');
+                            icon: 'favicon-failure.png',
+                            oldIcon: 'favicon.png',
+                          );
                         },
                         child: const Text(
                           'Red',
@@ -50,7 +63,10 @@ class _MyAppState extends State<MyApp> {
                       ),
                       TextButton(
                         onPressed: () {
-                          _flutterAppIconsPlugin.setIcon(icon: 'favicon.png');
+                          _flutterAppIconsPlugin.setIcon(
+                            icon: 'favicon.png',
+                            oldIcon: 'favicon-failure.png',
+                          );
                         },
                         child: const Text(
                           'Blue',

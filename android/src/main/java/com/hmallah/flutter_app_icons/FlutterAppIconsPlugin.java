@@ -1,4 +1,5 @@
 package com.hmallah.flutter_app_icons;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -34,22 +35,17 @@ public class FlutterAppIconsPlugin implements FlutterPlugin, MethodCallHandler {
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         if (call.method.equals("setIcon")) {
             PackageManager pm = context.getPackageManager();
-            final String icon = call.argument("icon");
-            if(icon.equals("favicon-failure.png")){
-                pm.setComponentEnabledSetting(
-                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivity"),
-                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-                pm.setComponentEnabledSetting(
-                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivityRed"),
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-            } else {
-                pm.setComponentEnabledSetting(
-                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivityRed"),
-                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-                pm.setComponentEnabledSetting(
-                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+".MainActivity"),
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-            }
+            String icon = call.argument("icon");
+            String oldIcon = call.argument("oldIcon");
+            icon = icon.replace('-', '.');
+            oldIcon = oldIcon.replace('-', '.');
+            pm.setComponentEnabledSetting(
+                    new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName + "." + oldIcon),
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(
+                    new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+  "." + icon),
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+
         } else {
             result.notImplemented();
         }

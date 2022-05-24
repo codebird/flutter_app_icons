@@ -10,9 +10,10 @@ class MethodChannelFlutterAppIcons extends FlutterAppIconsPlatform {
   final methodChannel = const MethodChannel('flutter_app_icons');
 
   @override
-  Future<String?> setIcon({required String icon}) async {
+  Future<String?> setIcon({required String icon, String oldIcon = ''}) async {
     await methodChannel.invokeMethod<String>('setIcon', <String, String>{
       'icon': icon,
+      'oldIcon': oldIcon,
     });
     return '';
   }
