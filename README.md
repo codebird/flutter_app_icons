@@ -85,4 +85,8 @@ android/src/main/(java OR kotlin)/your_package_name/ClassName. Once you open thi
 you will see a notification at the top "Open for Editing In Android Studio", click it and then from there
 run / publish  do whatever you want with your app.
 
+Check the live demo on youtube:
+
+https://youtu.be/PA4eLP3kIRc
+
 I am still in the process of finding a workaround for this, but for the time being I didn't find it.

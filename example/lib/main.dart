@@ -25,15 +25,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    Timer.periodic(const Duration(seconds: 5), (Timer timer) {
-      String oldIcon = icon;
-      if (icon == 'favicon.png') {
-        icon = 'favicon-failure.png';
-      } else {
-        icon = 'favicon.png';
-      }
-      _flutterAppIconsPlugin.setIcon(icon: icon, oldIcon: oldIcon);
-    });
+    //Auto icon change every 5 seconds, just for testing.
+    // Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+    //   String oldIcon = icon;
+    //   if (icon == 'favicon.png') {
+    //     icon = 'favicon-failure.png';
+    //   } else {
+    //     icon = 'favicon.png';
+    //   }
+    //   _flutterAppIconsPlugin.setIcon(icon: icon, oldIcon: oldIcon);
+    // });
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
