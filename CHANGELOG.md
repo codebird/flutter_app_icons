@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Added android support
+
 ## 0.0.4
 
 * Updated example
