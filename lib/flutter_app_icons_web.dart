@@ -19,19 +19,25 @@ class FlutterAppIconsWeb extends FlutterAppIconsPlatform {
 
   /// sets favicon of webpage
   @override
-  Future<String> setIcon({required String icon, String oldIcon = ''}) {
+  Future<String> setIcon(
+      {required String icon, String oldIcon = '', String appleTouchIcon = ''}) {
     LinkElement? link = querySelector("link[rel~='icon']") as LinkElement?;
-    LinkElement? link2 =
-        querySelector("link[rel~='apple-touch-icon']") as LinkElement?;
+    if (appleTouchIcon != '') {
+      LinkElement? linkAppleTouchIcon =
+          querySelector("link[rel~='apple-touch-icon']") as LinkElement?;
+      if (linkAppleTouchIcon == null) {
+        linkAppleTouchIcon = LinkElement()..rel = 'apple-touch-icon';
+        querySelector('head')?.children.add(linkAppleTouchIcon);
+      }
+      linkAppleTouchIcon.href = appleTouchIcon;
+    }
+
     if (link == null) {
-      link = LinkElement()
-        ..href = icon
-        ..rel = 'icon';
-      querySelector('head')?.children?.add(link);
+      link = LinkElement()..rel = 'icon';
+      querySelector('head')?.children.add(link);
       return Future(() => icon);
     }
     link.href = icon;
-    link2?.href = icon;
     return Future(() => icon);
   }
 }

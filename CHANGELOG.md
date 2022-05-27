@@ -1,3 +1,11 @@
+## 0.0.7
+
+* Small description change.
+
+## 0.0.6
+
+* Added support to web apple-touch-icon
+
 ## 0.0.5
 
 * Added android support

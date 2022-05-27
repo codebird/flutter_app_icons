@@ -23,7 +23,8 @@ abstract class FlutterAppIconsPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> setIcon({required String icon, String oldIcon = ''}) {
+  Future<String?> setIcon(
+      {required String icon, String oldIcon = '', String appleTouchIcon = ''}) {
     throw UnimplementedError('setIcon() has not been implemented.');
   }
 }
