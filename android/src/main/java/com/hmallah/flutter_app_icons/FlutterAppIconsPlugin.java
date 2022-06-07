@@ -1,11 +1,11 @@
 package com.hmallah.flutter_app_icons;
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import androidx.annotation.NonNull;
+import android.util.Log;
 
-import io.flutter.Log;
+import androidx.annotation.NonNull;
+import java.util.logging.*;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -34,17 +34,23 @@ public class FlutterAppIconsPlugin implements FlutterPlugin, MethodCallHandler {
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         if (call.method.equals("setIcon")) {
-            PackageManager pm = context.getPackageManager();
-            String icon = call.argument("icon");
-            String oldIcon = call.argument("oldIcon");
-            icon = icon.replace('-', '.');
-            oldIcon = oldIcon.replace('-', '.');
-            pm.setComponentEnabledSetting(
-                    new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName + "." + oldIcon),
-                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-            pm.setComponentEnabledSetting(
-                    new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+  "." + icon),
-                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            try {
+                PackageManager pm = context.getPackageManager();
+                String icon = call.argument("icon");
+                String oldIcon = call.argument("oldIcon");
+                icon = icon.replace('-', '.');
+                oldIcon = oldIcon.replace('-', '.');
+                pm.setComponentEnabledSetting(
+                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName + "." + oldIcon),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                pm.setComponentEnabledSetting(
+                        new ComponentName(context.getApplicationInfo().packageName, context.getApplicationInfo().packageName+  "." + icon),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            }
+            catch (Exception e){
+                Log.d("Flutter App Icons", "You need to update AndroidManifest.xml, please refer to README. "+e.getMessage());
+            }
+
 
         } else {
             result.notImplemented();

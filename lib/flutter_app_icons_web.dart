@@ -3,7 +3,6 @@
 // package as the core of your plugin.
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
-
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'flutter_app_icons_platform_interface.dart';
@@ -22,6 +21,7 @@ class FlutterAppIconsWeb extends FlutterAppIconsPlatform {
   Future<String> setIcon(
       {required String icon, String oldIcon = '', String appleTouchIcon = ''}) {
     LinkElement? link = querySelector("link[rel~='icon']") as LinkElement?;
+
     if (appleTouchIcon != '') {
       LinkElement? linkAppleTouchIcon =
           querySelector("link[rel~='apple-touch-icon']") as LinkElement?;
