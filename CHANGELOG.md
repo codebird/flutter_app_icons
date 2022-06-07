@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Error handling for android, in case AndroidManifest.xml isn't correct.
+
 ## 0.0.7
 
 * Small description change.
