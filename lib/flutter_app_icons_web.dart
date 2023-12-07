@@ -2,8 +2,8 @@
 // of your plugin as a separate package, instead of inlining it in the same
 // package as the core of your plugin.
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:web/web.dart' as web;
 
 import 'flutter_app_icons_platform_interface.dart';
 
@@ -16,28 +16,32 @@ class FlutterAppIconsWeb extends FlutterAppIconsPlatform {
     FlutterAppIconsPlatform.instance = FlutterAppIconsWeb();
   }
 
-  /// sets favicon of webpage
+  /// Sets favicon of webpage to [icon].
+  ///
+  /// If [appleTouchIcon] is provided, sets it to a `link[rel=apple-touch-icon]`.
   @override
-  Future<String> setIcon(
-      {required String icon, String oldIcon = '', String appleTouchIcon = ''}) {
-    LinkElement? link = querySelector("link[rel~='icon']") as LinkElement?;
-
+  Future<String> setIcon({
+    required String icon,
+    String oldIcon = '',
+    String appleTouchIcon = '',
+  }) async {
     if (appleTouchIcon != '') {
-      LinkElement? linkAppleTouchIcon =
-          querySelector("link[rel~='apple-touch-icon']") as LinkElement?;
-      if (linkAppleTouchIcon == null) {
-        linkAppleTouchIcon = LinkElement()..rel = 'apple-touch-icon';
-        querySelector('head')?.children.add(linkAppleTouchIcon);
-      }
-      linkAppleTouchIcon.href = appleTouchIcon;
+      _getLinkWithRel('apple-touch-icon').href = appleTouchIcon;
     }
+    _getLinkWithRel('icon').href = icon;
+    return icon;
+  }
 
+  // This function returns a link with `rel` from the page.
+  //
+  // If the link[rel] does not exist, it adds it to the head.
+  web.HTMLLinkElement _getLinkWithRel(String rel) {
+    web.Element? link = web.document.querySelector('link[rel="$rel"]');
     if (link == null) {
-      link = LinkElement()..rel = 'icon';
-      querySelector('head')?.children.add(link);
-      return Future(() => icon);
+      link = web.document.createElement('link');
+      (link as web.HTMLLinkElement).rel = rel;
+      web.document.head?.appendChild(link);
     }
-    link.href = icon;
-    return Future(() => icon);
+    return link as web.HTMLLinkElement;
   }
 }

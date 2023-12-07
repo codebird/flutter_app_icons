@@ -14,10 +14,9 @@ class MethodChannelFlutterAppIcons extends FlutterAppIconsPlatform {
       {required String icon,
       String oldIcon = '',
       String appleTouchIcon = ''}) async {
-    await methodChannel.invokeMethod<String>('setIcon', <String, String>{
+    return methodChannel.invokeMethod<String>('setIcon', <String, String>{
       'icon': icon,
       'oldIcon': oldIcon,
     });
-    return '';
   }
 }
