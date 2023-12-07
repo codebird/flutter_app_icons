@@ -1,11 +1,11 @@
 name: flutter_app_icons
 description: Dynamic App Icon, provides a way to change favicon for web, and android app icon programatically.
-version: 0.1.0
+version: 0.0.9
 homepage: https://github.com/codebird/flutter_app_icons
 
 environment:
   sdk: ^3.2.0
-  flutter: ^3.16.0
+  flutter: '>=3.16.0'
 
 dependencies:
   flutter:

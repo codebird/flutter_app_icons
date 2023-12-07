@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.9
 
 * Migrate web code to `package:web`, so this can compile to WASM.
 
