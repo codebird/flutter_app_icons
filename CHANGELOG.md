@@ -1,3 +1,7 @@
+## 0.1.0
+
+* Migrate web code to `package:web`, so this can compile to WASM.
+
 ## 0.0.8
 
 * Error handling for android, in case AndroidManifest.xml isn't correct.
