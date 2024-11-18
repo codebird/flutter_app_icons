@@ -1,3 +1,7 @@
+## 0.1.1
+
+* Allow higher version of web
+
 ## 0.1.0
 
 * Allow higher version of web
